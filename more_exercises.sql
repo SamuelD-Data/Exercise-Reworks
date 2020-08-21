@@ -9,3 +9,10 @@
 -- What languages are spoken in Santa Monica?
 
 use world;
+
+select language from countrylanguage
+JOIN city on city.CountryCode = countrylanguage.CountryCode
+where city.name = "santa monica";
+
+--How many different countries are in each region?
+
