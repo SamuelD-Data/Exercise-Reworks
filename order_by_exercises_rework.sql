@@ -40,3 +40,8 @@ order by hire_date desc;
 
 -- Find all previous employees hired in the 90s and born on Christmas. Sort the results so that the oldest employee who was hired last is the first result. Enter a comment with the number of employees returned, the name of the oldest employee who was hired last, and the name of the youngest emmployee who was hired first.
 
+select first_name, last_name, hire_date
+from employees
+where hire_date between '1990-01-01' and '1999-12-31'
+and birth_Date like '%-12-25';
+
