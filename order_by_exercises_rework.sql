@@ -24,6 +24,19 @@ order by last_name, first_name;
 
 -- Write a query to to find all current employees whose last name starts and ends with 'E'. Sort the results by their employee number. Enter a comment with the number of employees returned, the first employee number and their first and last name, and the last employee number with their first and last name.
 
--- Write a query to to find all current employees whose last name starts and ends with 'E'. Sort the results by their hire date, so that the newest employees are listed first. Enter a comment with the number of employees returned, the name of the newest employee, and the name of the oldest emmployee.
+-- 7330 rows, Ramzi Erde | Dharmaraja Ertl
+select first_name, last_name
+from employees
+where last_name like 'e%'
+order by emp_no;
+
+-- Write a query to find all current employees whose last name starts and ends with 'E'. Sort the results by their hire date, so that the newest employees are listed first. Enter a comment with the number of employees returned, the name of the newest employee, and the name of the oldest emmployee.
+
+-- 899 rows | Teiji Eldridge | Sergi Erde
+select first_name, last_name
+from employees
+where last_name like '%e' and last_name like 'e%'
+order by hire_date desc;
 
 -- Find all previous employees hired in the 90s and born on Christmas. Sort the results so that the oldest employee who was hired last is the first result. Enter a comment with the number of employees returned, the name of the oldest employee who was hired last, and the name of the youngest emmployee who was hired first.
+
