@@ -2,9 +2,23 @@
 
 -- In your script, use DISTINCT to find the unique titles in the titles table. How many unique titles have there ever been? Answer that in a comment in your SQL file.
 
+-- 7 unique titles
+SELECT count(distinct title)
+FROM titles; 
+
 -- Write a query to to find a list of all unique last names of current or previous employees that start and end with 'E' using GROUP BY.
 
+SELECT last_name
+FROM employees
+WHERE last_name LIKE 'E%' AND last_name LIKE '%E'
+GROUP BY last_name;
+
 -- Write a query to to find all unique combinations of first and last names of previous employees whose last names start and end with 'E'.
+
+SELECT first_name, last_name
+FROM employees
+WHERE last_name LIKE 'E%' AND last_name LIKE '%E'
+GROUP BY first_name, last_name;
 
 -- rite a query to find the unique last names with a 'q' but not 'qu'. Include those names in a comment in your sql code.
 
