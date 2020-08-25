@@ -1,0 +1,1 @@
+-- Create a new file named group_by_exercises.sql
