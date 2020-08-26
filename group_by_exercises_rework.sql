@@ -20,8 +20,9 @@ FROM employees
 WHERE last_name LIKE 'E%' AND last_name LIKE '%E'
 GROUP BY first_name, last_name;
 
--- rite a query to find the unique last names with a 'q' but not 'qu'. Include those names in a comment in your sql code.
+-- Write a query to find the unique last names with a 'q' but not 'qu'. Include those names in a comment in your sql code.
 
+-- Chleq, Lindqvist, Qiwen
 SELECT DISTINCT last_name
 FROM employees
 WHERE last_name LIKE '%q%' AND last_name NOT LIKE '%qu%';
