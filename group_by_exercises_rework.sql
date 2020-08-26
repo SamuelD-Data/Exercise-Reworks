@@ -36,8 +36,26 @@ ORDER BY COUNT(*);
 
 -- Find all current or previous employees with first names 'Irena', 'Vidya', or 'Maya'. Use COUNT(*) and GROUP BY to find the number of employees for each gender with those names.
 
+SELECT COUNT(*) as Gender_Count, gender
+FROM employees
+WHERE first_name in ('Irena', 'Vidya', 'Maya')
+GROUP BY gender
+ORDER BY COUNT(*) DESC;
+
 -- Using youre query that generates a username for all of the current and previous employees, generate a count employees for each unique username. 
+
+SELECT 
+	CONCAT(LOWER(SUBSTR(first_name, 1, 1)), LOWER(SUBSTR(last_name, 1, 4)) , "_", SUBSTR(birth_date, 6, 2), SUBSTR(birth_date, 3, 2)) as USERNAME, 
+	COUNT(*)
+FROM employees
+GROUP BY USERNAME
+HAVING COUNT(*) > 1;
+
 
 -- Are there any duplicate usernames? 
 
+-- Yes there are depulicates since I was able to find results even after adding a condition that would only display a username if it was a duplicate. ie. HAVING COUNT(*) > 1
+
 -- BONUS: How many duplicate usernames are there?
+
+-- 13251 as shown in the details section below the results
