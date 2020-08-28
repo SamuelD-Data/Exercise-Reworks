@@ -32,7 +32,22 @@ where emp_no not in (
 
 -- Find all the current department managers that are female. List their names in a comment in your code.
 
+SELECT CONCAT(first_name, ' ', last_name) as female_managers
+FROM employees 
+WHERE employees.emp_no IN (
+	SELECT emp_no
+	FROM dept_manager 
+	WHERE to_date > curdate() and employees.gender = 'F');
+
 -- Find all the employees who currently have a higher salary than the companies overall, historical average salary.
+
+SELECT CONCAT(first_name, ' ', last_name) as emp_name, salaries.salary
+FROM salaries
+JOIN employees ON employees.emp_no = salaries.emp_no
+WHERE salaries.salary > (
+	SELECT avg(salaries.salary)
+	FROM salaries)
+and salaries.to_Date > curdate();
 
 -- How many current salaries are within 1 standard deviation of the current highest salary? (Hint: you can use a built in function to calculate the standard deviation.) What percentage of all salaries is this?
 
