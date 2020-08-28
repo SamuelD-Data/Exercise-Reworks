@@ -51,6 +51,23 @@ and salaries.to_Date > curdate();
 
 -- How many current salaries are within 1 standard deviation of the current highest salary? (Hint: you can use a built in function to calculate the standard deviation.) What percentage of all salaries is this?
 
+SELECT employees.first_name, employees.last_name, salary
+FROM salaries
+JOIN employees on employees.emp_no = salaries.emp_no
+WHERE salaries.salary >=
+		(
+		(select MAX(salary) from salaries) - (select std(salary) from salaries)
+)
+AND to_date > curdate();
+
+SELECT CONCAT ((SELECT COUNT(salaries.salary) as salaries_above_avg
+	FROM salaries
+	WHERE salaries.salary >=  
+			((select MAX(salary) from salaries) - (select std(salary) from salaries))
+	AND salaries.to_date> curdate()) 
+	/ (select COUNT(salaries.salary) from salaries) * 100, '%')
+as percent_of_salaries;
+
 --BONUS
 
 -- Find all the department names that currently have female managers.
