@@ -2,9 +2,33 @@
 
 -- Find all the current employees with the same hire date as employee 101010 using a sub-query.
 
+SELECT CONCAT(first_name, " ", last_name) as full_name, hire_date
+FROM employees
+WHERE hire_date IN (
+	SELECT hire_date
+	FROM employees
+	WHERE emp_no = '101010'
+);
+
 -- Find all the titles ever held by all current employees with the first name Aamod.
 
+select titles.title, CONCAT(first_name, " ", last_name) 
+FROM titles
+JOIN employees ON employees.emp_no = titles.emp_no
+where titles.emp_no in (
+	select emp_no from employees
+	where employees.first_name = 'Aamod')
+order by title;
+
 -- How many people in the employees table are no longer working for the company? Give the answer in a comment in your code.
+
+select count(distinct emp_no) 
+from employees 
+where emp_no not in (
+	select emp_no 
+	from dept_emp
+	where to_date > curdate()
+);
 
 -- Find all the current department managers that are female. List their names in a comment in your code.
 
