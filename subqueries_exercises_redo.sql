@@ -84,4 +84,13 @@ WHERE dm.to_date > curdate()
 ;
 -- Find the first and last name of the employee with the highest salary.
 
+select CONCAT(e.first_name, ' ', e.last_name) as full_name, all_salaries.salary
+FROM (
+		SELECT s.salary, s.emp_no
+		FROM salaries as s
+	  ) as all_salaries
+JOIN employees as e ON e.emp_no = all_salaries.emp_no
+ORDER BY salary DESC
+LIMIT 1;
+
 -- Find the department name that the employee with the highest salary works in.
