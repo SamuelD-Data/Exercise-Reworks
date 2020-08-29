@@ -72,6 +72,16 @@ as percent_of_salaries;
 
 -- Find all the department names that currently have female managers.
 
+select EG.gender as manager_gender, d.dept_name
+from (
+		SELECT e.gender, e.emp_no
+		FROM employees as e
+		WHERE e.gender = 'F' 
+	  ) as EG
+JOIN dept_manager as dm ON dm.emp_no = EG.emp_no
+JOIN departments as d ON d.dept_no = dm.dept_no
+WHERE dm.to_date > curdate()
+;
 -- Find the first and last name of the employee with the highest salary.
 
 -- Find the department name that the employee with the highest salary works in.
