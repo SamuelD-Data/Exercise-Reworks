@@ -1,0 +1,1 @@
+-- Create a file named temporary_tables.sql to do your work for this exercise.
