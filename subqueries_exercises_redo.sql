@@ -94,3 +94,14 @@ ORDER BY salary DESC
 LIMIT 1;
 
 -- Find the department name that the employee with the highest salary works in.
+
+select subquery.dept_name, CONCAT(subquery.first_name, ' ', subquery.last_name) as full_name
+FROM (
+		SELECT d.dept_name, d.dept_no, s.salary, e.first_name, e.last_name
+		FROM departments as d
+		JOIN dept_emp as de ON de.dept_no = d.dept_no
+		JOIN employees as e ON e.emp_no = de.emp_no
+		JOIN salaries as s ON s.emp_no = e.emp_no
+		) as subquery
+ORDER BY subquery.salary DESC
+LIMIT 1;
