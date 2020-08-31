@@ -17,9 +17,28 @@ SET full_name = CONCAT(first_name, ' ', last_name);
 
 -- Remove the first_name and last_name columns from the table.
 
+ALTER TABLE employees_with_departments DROP COLUMN first_name;
+
+ALTER TABLE employees_with_departments DROP COLUMN last_name;
+
 -- What is another way you could have ended up with this same table?
 
+CREATE TEMPORARY TABLE employees_with_departments AS
+SELECT *
+FROM employees.employees_with_departments;
+
+ALTER TABLE employees_with_departments ADD full_name VARCHAR(100);
+
+UPDATE employees_with_departments
+SET full_name = CONCAT(first_name, ' ', last_name);
+
+ALTER TABLE employees_with_departments DROP COLUMN first_name, DROP COLUMN last_name;
+
 -- Create a temporary table based on the payment table from the sakila database.
+
+CREATE TEMPORARY TABLE payment AS
+SELECT *
+FROM sakila.payment;
 
 -- Write the SQL necessary to transform the amount column such that it is stored as an integer representing the number of cents of the payment. For example, 1.99 should become 199.
 
