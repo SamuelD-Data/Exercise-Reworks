@@ -82,4 +82,16 @@ from z_score_V3;
 
 -- In terms of salary, what is the best department right now to work for? 
 
--- The worst? 
+select * from darden_1034.z_score_V3
+order by zscore desc
+limit 1;
+
+-- Answer: sales
+
+-- The worst?
+
+select * from darden_1034.z_score_V3
+order by zscore
+limit 1;
+
+-- Answer: Research
